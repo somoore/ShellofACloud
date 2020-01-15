@@ -1,0 +1,221 @@
+.notransition * { 
+  /*CSS transitions*/
+  -o-transition-property: none !important;
+  -moz-transition-property: none !important;
+  -ms-transition-property: none !important;
+  -webkit-transition-property: none !important;
+  transition-property: none !important;
+  /*CSS transforms*/
+  -o-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+  -webkit-transform: none !important;
+  transform: none !important;
+  /*CSS animations*/
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  -ms-animation: none !important;
+  animation: none !important;
+} 
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+abbr .abbr {
+  cursor: pointer;
+}
+
+.emoji {
+    color:rgba(0,150,255,150);
+    /* font-family: "Segoe UI Emoji"; */
+}
+
+.terminal {
+  background-color: darkslateblue;
+  color: aliceblue;
+  /* border-style: solid;
+  border-width: 1px;
+  border-color: transparent; */
+}
+
+/* .terminal-box {
+    width: 40vw;
+    height: 40vh;
+} */
+
+.fade-in-items li {
+  opacity: 0;
+  animation: fadeInItems 0.9s ease-in forwards;
+}
+
+.fade-in-items li:nth-child(1) { animation-delay: .5s; }
+.fade-in-items li:nth-child(2) { animation-delay: 1s; }
+.fade-in-items li:nth-child(3) { animation-delay: 1.5s; }
+.fade-in-items li:nth-child(4) { animation-delay: 2s; }
+.fade-in-items li:nth-child(5) { animation-delay: 2.5s; }
+
+@keyframes fadeInItems {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 1.0;
+  }
+}
+
+.splash-page {
+  margin: 80px auto;
+  text-align: center;
+  width: 100%;
+}
+.splash-page .second-part {
+  text-align: left;
+  display: inline-block;
+}
+.splash-page li {
+  list-style: none;
+}
+.splash-page .term-space {
+  margin: 40px 0;
+}
+.splash-page .demo-gif {
+  border: 1px solid;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.splash-page .early-access {
+  color: #34495E;
+  font-size: 20px;
+  margin: 30px;
+}
+.splash-page .bottom {
+  margin: 20px;
+  font-size: 1em;
+}
+/* make keyframes that tell the start state and the end state of our object */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  opacity: 0;
+  /* make things invisible upon start */
+  -webkit-animation: fadeIn ease-in 1;
+  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+}
+.fade-in.one {
+  -webkit-animation-delay: 0.7s;
+  -moz-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+.fade-in.two {
+  -webkit-animation-delay: 1.2s;
+  -moz-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+.fade-in.three {
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+#header{
+  font-family       : Cascadia Code, Courier New, monospace;
+  font-size         : xx-large;
+  text-shadow       : 3px 3pxblack;
+  text-align        : center;
+  white-space       : nowrap;
+  overflow          : hidden;
+  letter-spacing    : .05em;
+  animation         : typing 1s steps(30, end), blink-caret 1s step-end 5;
+  border-right-style: solid;
+  border-right-width: .5em;
+  border-right-color: transparent;
+  width             : 50%;
+  margin-left       : 25%;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 50% }
+}
+
+@keyframes blink-caret {
+  from, to { 
+    border-right-style: solid; 
+    border-right-width: .5em;
+    border-right-color: midnightblue;
+  }
+  50% { 
+    border-right-style: solid;
+    border-right-width: .5em;
+    border-right-color: transparent;
+  }
+}
+
+
+.thumbnail {
+  cursor: pointer;
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: rgb(220, 230, 250);
+  border: 1px solid rgb(13, 3, 49);
+  border-radius: 4px;
+  -webkit-transition: border 0.2s ease-in-out;
+  -o-transition: border 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out;
+}
+.thumbnail > img,
+.thumbnail a > img {
+  margin-right: auto;
+  margin-left: auto;
+}
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail:active {
+  border-color: #337ab7;
+}
+.thumbnail .caption {
+  padding: 9px;
+  color: #333333;
+}

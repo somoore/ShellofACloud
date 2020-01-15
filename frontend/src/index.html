@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Exostack - Session Manager</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@4.2.0/css/xterm.css" /> -->
+    <style>
+        .terminal {
+            /* background-color: aquamarine;
+            border: 1px thick red; */
+            width: calc(100vw - 10px);
+            height: calc(95vh - 10px);
+        }
+    </style>
+</head>
+
+<body>
+    <span id="user-message"></span>
+    <img id="user-picture" height="25px" width="25px" alt=""></img>
+    <button id="btn-login" disabled="true">Log in</button>
+    <button id="btn-logout" disabled="true">Log out</button>
+    <hr/>
+    <div id="container">
+        <label for="instanceId">Instance</label>
+        <input id="instanceId" value="i-02949c6924c2da878">
+        <label for="region">Region</label>
+        <input id="region" value="us-east-1">
+        <button id="command" type="button">Connect</button>
+        <br/>
+        <div id="terminal" class="terminal"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

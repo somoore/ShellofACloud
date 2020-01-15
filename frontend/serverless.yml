@@ -1,0 +1,30 @@
+# Welcome to Serverless!
+# For full config options, check the docs:
+#    docs.serverless.com
+# Happy Coding!
+
+service: shellofacloud-frontend
+
+custom:
+  client:
+    distributionFolder: dist
+    indexDocument: index.html
+    errorDocument: index.html
+    bucketName: InsertS3BucketNameHere
+
+plugins:
+    - serverless-finch
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'} #default is us-east-1, change if needed
+  profile: InsertProfileNameHere # update profile-name if used
+
+# package: 
+#   include:
+#     - ./node_modules/jquery/dist/jquery.min.js
+#     - ./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js
+#     - '!node_modules'
+#   # exclude:

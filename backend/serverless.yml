@@ -1,0 +1,100 @@
+service: shellofacloud-session-countdown
+
+custom:
+  appName: ShellOfACloud
+  env:
+    SessionsTableName: ${self:custom.appName}-SessionsTable
+    SessionsTableExpiresIndexName: ExpiresAtIndex
+    # SsmSessionsTrailSNSTopicName: SSM_SessionManager_Events_Topic
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: us-east-1 #defaults to us-east-1, update if using different region
+  profile: InsertProfileNameHere #update with profile being used
+  deploymentBucket: NameofS3Bucket #put name of s3 bucket to be used for backend deployment here.
+  versionFunctions: false
+  memorySize: 128
+  timeout: 10
+
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - ssm:TerminateSession
+    Resource: '*'
+  - Effect: Allow
+    Action:
+      - dynamodb:Query
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:DeleteItem
+    Resource: 
+      - arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/${self:custom.env.SessionsTableName}
+      - arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/${self:custom.env.SessionsTableName}/index/${self:custom.env.SessionsTableExpiresIndexName}
+  environment: ${self:custom.env}
+
+functions:
+
+  # https://serverless.com/blog/serverless-cloudtrail-cloudwatch-events/
+  trail-ssm-session-start:
+    handler: handler.trailSsmSessionStart
+    events:
+      # - sns: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:${self:custom.env.SsmSessionsTrailSNSTopicName}
+      - cloudwatchEvent:
+          name: ${self:custom.appName}-trail-ssm-session-start
+          description: CloudTrail based event to track SSM Session Manager sessions
+          event:
+            source:
+              - aws.ssm
+            detail-type:
+              - AWS API Call via CloudTrail
+            detail:
+              eventName:
+                - StartSession
+                # - TerminateSession
+    environment:
+      SessionTimeoutSeconds: 90
+
+  kill-expired-sessions:
+      handler: handler.killExpiredSessions
+      events:
+        - schedule:
+            name: ${self:custom.appName}-kill-expired-ssm-sessions
+            description: Terminates any sessions that may be due for expiration
+            rate: rate(1 minute)
+            enabled: true
+
+# you can add CloudFormation resource templates here
+resources:
+  Resources:
+    SessionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        # Generate a name based on the stage
+        TableName: ${self:custom.env.SessionsTableName}
+        AttributeDefinitions:
+          - AttributeName: sessionId
+            AttributeType: S
+          - AttributeName: expiresAt
+            AttributeType: N
+          - AttributeName: sessionType
+            AttributeType: S
+        KeySchema:
+          - AttributeName: sessionId
+            KeyType: HASH
+          - AttributeName: expiresAt
+            KeyType: RANGE
+        GlobalSecondaryIndexes: 
+          - IndexName: ${self:custom.env.SessionsTableExpiresIndexName}
+            KeySchema: 
+              - AttributeName: sessionType
+                KeyType: HASH
+              - AttributeName: expiresAt
+                KeyType: RANGE
+            Projection: 
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+
+plugins:
+  - serverless-pseudo-parameters

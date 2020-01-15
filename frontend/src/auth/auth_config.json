@@ -1,0 +1,4 @@
+{
+  "domain": "**_your_Auth0_domain.auth0.com_** ",
+  "clientId": "**_your_Auth0_clientId_goes_here**"
+}

@@ -1,0 +1,61 @@
+export const lookups = {
+  MessageTypes: {
+    InputStreamData: 'input_stream_data',
+    OutputStreamData: 'output_stream_data',
+    AcknowledgeMessage: 'acknowledge',
+    ChannelClosedMessage: 'channel_closed'
+  },
+  PayloadTypes: {
+    '1': 'Output',
+    '2': 'Error',
+    '3': 'Size',
+    '4': 'Parameter',
+    '5': 'HandshakeRequest',
+    '6': 'HandshakeResponse',
+    '7': 'HandshakeComplete',
+    '8': 'EncChallengeRequest',
+    '9': 'EncChallengeResponse',
+    Output: 1,
+    Error: 2,
+    Size: 3,
+    Parameter: 4,
+    HandshakeRequest: 5,
+    HandshakeResponse: 6,
+    HandshakeComplete: 7,
+    EncChallengeRequest: 8,
+    EncChallengeResponse: 9
+  },
+  maxDeferredMsgListSize: 5000,
+  c: 200,
+  b: 100,
+  a: 0,
+  d: 100,
+  m: 0.125,
+  l: 0.25,
+  n: 10,
+  o: 1000,
+  k: 43200000,
+  e: 500,
+  f: 300000,
+  p: 1,
+  q: '__ping__',
+  j: {
+    Exit: 'Exit',
+    Reconnect: 'Reconnect',
+    Error: 'Error'
+  },
+  u: 'KMSEncryption',
+  t: 64,
+  w: 32,
+  v: {
+    '1': 'Success',
+    '2': 'Failed',
+    '3': 'Unsupported',
+    Success: 1,
+    Failed: 2,
+    Unsupported: 3
+  },
+  x: 'aes-256-gcm',
+  s: 'aws:ssm:SessionId',
+  r: 'aws:ssm:TargetId'
+};
