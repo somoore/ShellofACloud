@@ -1,7 +1,7 @@
 # Shell of A Cloud - Deployment Guide
 
 ## Purpose 
-Shell of A Cloud helps you take the [AWS SSM Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) web-based terminal and embed it into your own projects, quickly and easily.  This deployment guide and associated code will help you create a clone of [https://www.shellofa.cloud](https://www.shellofa.cloud). From here, you can customize to your liking, swap out authentication methods, use internally, etc.
+Shell of A Cloud helps you take the [AWS SSM Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) web-based terminal and embed it into your own projects, quickly and easily.  This deployment guide and associated code will help you create a clone of [https://www.shellofa.cloud](https://d2qorgvyee6w7a.cloudfront.net/). From here, you can customize to your liking, swap out authentication methods, use internally, etc.
 
 **Features**
 - Use the [AWS Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) terminal outside of AWS console, CLI and plugin in your own Public or Private projects.
